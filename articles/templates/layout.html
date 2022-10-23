@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,8 @@
 </head>
 <body>
     <div class="menu">
-        Django Course
+        <a href="{% url 'Index' %}">Index</a>
+        <a href="{% url 'About US' %}">About US</a>
     </div>
     {% block content %}
         <h1>This is Base Title</h1>

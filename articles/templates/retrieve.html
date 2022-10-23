@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>{{article.title}}</h1>
+<p>{{article.description}}</p>
+<p>{{article.related_user.first_name}} {{article.related_user.last_name}}</p>
+<p>{{article.related_user.email}}</p>
+{% endblock content %}

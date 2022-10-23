@@ -19,6 +19,7 @@ from articles.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about-us/', about),
-    path('', index)
+    path('about-us/', about, name='About US'),
+    path('<int:id>/', retrieve, name='Retrieve'),
+    path('', index, name='Index')
 ]

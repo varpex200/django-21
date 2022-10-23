@@ -5,4 +5,9 @@
 
 {% block content %}
 <h1>This is Index Page</h1>
+{% for article in articles %}
+    <a href="{% url 'Retrieve' id=article.id %}">
+        <h2>{{article}}</h2>
+    </a>
+{% endfor %}
 {% endblock content %}
