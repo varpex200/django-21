@@ -7,7 +7,11 @@
 <h1>This is Index Page</h1>
 {% for article in articles %}
     <a href="{% url 'Retrieve' id=article.id %}">
+        {% if article.thumbnail %}
+            <img src="{{article.thumbnail.url}}" width="200">
+        {% endif %}
         <h2>{{article}}</h2>
     </a>
+    <hr>
 {% endfor %}
 {% endblock content %}

@@ -2,3 +2,16 @@
 
 
 {% block title %}About US{% endblock title %}
+
+{% block content %}
+<style>
+    input {
+        background-color: lightblue;
+    }
+</style>
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input class="btn btn-primary py-3 px-5" type="submit" value="Submit" >
+</form>
+{% endblock content %}

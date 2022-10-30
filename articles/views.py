@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from articles.forms import CarForm
 
 from articles.models import Article
 
@@ -19,4 +20,12 @@ def retrieve(request, id):
     return render(request, 'retrieve.html', context)
 
 def about(request):
-    return render(request, 'about.html')
+    if request.method == 'POST':
+        form = CarForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+    form = CarForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'about.html', context)
