@@ -4,6 +4,11 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <input class="btn btn-info py-3 px-5 mt-3" type="submit" value="Submit" >
+</form>
 <h1>This is Index Page</h1>
 {% for article in articles %}
     <a href="{% url 'Retrieve' id=article.id %}">

@@ -21,9 +21,11 @@
         <a href="{% url 'Index' %}">Index</a>
         <a href="{% url 'About US' %}">About US</a>
     </div>
-    {% block content %}
-        <h1>This is Base Title</h1>
-    {% endblock content %}
+    <div class="container">
+        {% block content %}
+            <h1>This is Base Title</h1>
+        {% endblock content %}
+    </div>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

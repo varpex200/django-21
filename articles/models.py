@@ -5,7 +5,7 @@ class Article(models.Model):
     title = models.CharField(max_length=64, verbose_name='عنوان')
     description = models.TextField(verbose_name='توضیحات')
     related_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر مربوطه')
-    thumbnail = models.ImageField(upload_to='article-thumbnails', blank=True, default='', verbose_name='تصویر')
+    thumbnail = models.ImageField(upload_to='article-thumbnails', verbose_name='تصویر')
 
     class Meta:
         verbose_name = 'مقاله'

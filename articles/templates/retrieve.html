@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <input class="btn btn-info py-3 px-5 mt-3" type="submit" value="Submit" >
+</form>
 <h1>{{article.title}}</h1>
 <p>{{article.description}}</p>
 <p>{{article.related_user.first_name}} {{article.related_user.last_name}}</p>
