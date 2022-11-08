@@ -4,6 +4,11 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+{% endif %}
+
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form}}

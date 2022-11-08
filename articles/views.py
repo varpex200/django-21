@@ -1,10 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login as login_def
+from django.contrib.auth.decorators import login_required
 from articles.forms import CarForm, ArticleForm
 
 from articles.models import Article
 
-
+@login_required
 def index(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST or None, request.FILES or None)
@@ -43,3 +45,14 @@ def about(request):
         'form': form
     }
     return render(request, 'about.html', context)
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login_def(request, user)
+            return redirect('/')
+
+    return render(request, 'login.html')
