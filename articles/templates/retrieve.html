@@ -10,4 +10,11 @@
 <p>{{article.description}}</p>
 <p>{{article.related_user.first_name}} {{article.related_user.last_name}}</p>
 <p>{{article.related_user.email}}</p>
+
+<hr><hr>
+{% for comment in article.comment_set.all %}
+    <h6>{{comment.related_user}}</h6>
+    <p>{{comment.text}}</p>
+{% endfor %}
+
 {% endblock content %}
