@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login as login_def
 from django.contrib.auth.decorators import login_required
-from articles.forms import CarForm, ArticleForm
+from articles.forms import CarForm, ArticleForm, CommentForm
 
 from articles.models import Article
 
@@ -21,17 +21,26 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+@login_required
 def retrieve(request, id):
     article = Article.objects.get(id=id)
     if request.method == 'POST':
         form = ArticleForm(request.POST or None, request.FILES or None, instance=article)
         if form.is_valid():
             form.save()
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            comment_form.save()
     else:
         form = ArticleForm(instance=article)
+        comment_form = CommentForm(initial={
+            'related_article': id,
+            'related_user': request.user.id
+        })
     context = {
         'article': article,
-        'form': form
+        'form': form,
+        'comment_form': comment_form
     }
     return render(request, 'retrieve.html', context)
 
